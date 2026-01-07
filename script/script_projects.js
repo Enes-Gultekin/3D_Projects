@@ -38,9 +38,11 @@ const kenya = [
   [33.1432490853297, 19.893829895727322],
   [25.087396898831884, 19.893829895727322],
 ];
-
-const p_card = document.getElementById("projects_card")
-const close_button = document.getElementById("close_button")
+function card_content(d) {
+  p_card.innerHTML = `<div>${d.name}</div>`;
+}
+const p_card = document.getElementById("projects_card");
+const close_button = document.getElementById("close_button");
 const world = Globe()(document.getElementById("globeViz"))
   .globeImageUrl("img/earth.jpg")
   .htmlElementsData(myData) // Use your project array
@@ -49,7 +51,7 @@ const world = Globe()(document.getElementById("globeViz"))
     el.className = "marker-wrapper"; // THIS LINKS TO THE CSS ABOVE
 
     el.innerHTML = `
-        <div class="pulse" style="border-color: ${d.color}">${d.name}
+        <div class="pulse" style="border-color: ${d.color}">${d.name}</div>
 
       `;
 
@@ -57,10 +59,8 @@ const world = Globe()(document.getElementById("globeViz"))
     el.onclick = () =>
       world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
 
-
-
+    el.onclick = () => (p_card.style.right = "20px");
     //dialog window
-
 
     return el;
   });

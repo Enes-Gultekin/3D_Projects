@@ -43,10 +43,28 @@ body {
   z-index: 10;
 }
 #projects_card {
-  width: 300px;
-  height: fit-content;
-  position: absolute;
-  background-color: white;
-  z-index: 10;
+  position: fixed;
   top: 50%;
+  right: -400px; /* Start hidden off-screen to the right */
+  transform: translateY(-50%); /* Center it vertically */
+  width: 300px;
+  background: rgba(20, 20, 20, 0.9); /* Dark semi-transparent background */
+  backdrop-filter: blur(10px); /* Modern frosted-glass effect */
+  color: white;
+  padding: 30px;
+  border-radius: 20px 0 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  transition: right 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth slide-in */
+  z-index: 1000; /* Ensure it is above the globe */
+}
+#close_button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 }
