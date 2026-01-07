@@ -4,42 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects Portfolio - Globe</title>
+    <link rel="stylesheet" href="style/style_projects.css" />
 
-    <style>
-      body {
-        margin: 0;
-        background-color: #000;
-        overflow: hidden;
-      }
-      #globeViz {
-        width: 100vw;
-        height: 100vh;
-      }
-    </style>
+    <style></style>
 
     <script src="//unpkg.com/globe.gl"></script>
   </head>
   <body>
     <div id="globeViz"></div>
+    <div id="projects_card">
+      <h2 id="card_title"></h2>
+      <p id="card_description"></p>
+      <button id="close_button"></button>
+    </div>
 
-    <script>
-      // 2. Fix: Corrected the typo "onst" to "const"
-      const myData = [
-        { lat: 40.7128, lng: -74.006, name: "Project Alpha", color: "black" },
-        { lat: 48.8566, lng: 2.3522, name: "Project Beta", color: "cyan" },
-      ];
-
-      const world = Globe()(document.getElementById("globeViz"))
-        .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
-        .pointsData(myData)
-        .pointAltitude(0.2)
-        .pointColor("color")
-        .pointLabel("name") // This shows the name on hover
-        .pointRadius(2); // Added radius so the points are visible
-
-      // 3. Tip: Add auto-rotation to make it feel alive
-      world.controls().autoRotate = true;
-      world.controls().autoRotateSpeed = 0.6;
-    </script>
+    <script type="" src="script/script_projects.js"></script>
   </body>
 </html>
