@@ -59,7 +59,7 @@ body {
   z-index: 1000; /* Ensure it is above the globe */
 }
 #close_button {
-  position: absolute;
+  position: relative;
   top: 10px;
   right: 15px;
   background: none;
@@ -67,4 +67,16 @@ body {
   color: white;
   font-size: 24px;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+#projects_card.active {
+  right: 0;
+}
+#globeViz > div:nth-child(2) {
+  pointer-events: none !important; /* This lets clicks pass through the container layer... */
+}
+
+.marker-wrapper {
+  pointer-events: auto !important; /* ...so they hit the markers! */
 }
