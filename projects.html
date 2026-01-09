@@ -15,8 +15,20 @@
     <div id="projects_card">
       <h2 id="card_title"></h2>
       <p id="card_description"></p>
-      <button id="close_button">Close</button>
+      <a id="card_link" class="project-btn">View Full Project</a>
+      <div id="card_tags"></div>
+      <button id="close_button" >Close</button>
     </div>
+
+    <button id="gallery_toggle">Browse All Projects</button>
+
+<div id="gallery_overlay" class="hidden">
+    <div class="gallery_content">
+        <button id="close_gallery">&times;</button>
+        <h1>Project Portfolio</h1>
+        <div id="project_grid"></div>
+    </div>
+</div>
     <script type="" src="script/script_projects.js"></script>
 
   </body>
