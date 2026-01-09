@@ -17,7 +17,7 @@ const myData = [
     lng: 36.753387728832166,
     name: "Kenya",
     title: "Forest Change Monitoring in Western and Central Kenya (2001-2021)",
-    url: "../data/kenya_border.geojson",
+    url: " data/kenya_border.geojson",
     color: "red",
     ISO_A2: "KE",
     description:
@@ -35,7 +35,7 @@ const myData = [
     lng: 39.733437284508796,
     name: "Kenya",
     title: "Modeling Soil Erosion Risk in West Kenya",
-    url: "../data/kenya_border.geojson",
+    url: " data/kenya_border.geojson",
     color: "purple",
     ISO_A2: "KE",
     description:
@@ -48,7 +48,7 @@ const myData = [
     lng: 24.175533848483212,
     name: "Bostwana",
     title: "Rainfall-Biomass Interactions in Botswana",
-    url: "../data/bostwana_border.geojson",
+    url: " data/bostwana_border.geojson",
     color: "cyan",
     ISO_A2: "BW",
     description:
@@ -61,7 +61,7 @@ const myData = [
     lng: -0.12009109895504366,
     name: "London, UK",
     title: "Spatial Analysis of Fast-Food Venues in London",
-    url: "../data/britain_border.geojson",
+    url: " data/britain_border.geojson",
     color: "white",
     ISO_A2: "GB",
     description:
@@ -73,7 +73,7 @@ const myData = [
     lng: 10.491358329269445,
     name: "Germany",
     title: "Pegel Plugin: Real-Time Hydrological Data Integration",
-    url: "../data/germany_border.geojson",
+    url: " data/germany_border.geojson",
     color: "#ffffff",
     ISO_A2: "DE",
     description:
@@ -86,7 +86,7 @@ const myData = [
     lng: -3.596563756253431,
     name: "Spain",
     title: "Syndromes of Land Change in the Iberian Peninsula",
-    url: "../data/spain_border.geojson",
+    url: " data/spain_border.geojson",
     color: "yellow",
     ISO_A2: "ES",
     description:
@@ -121,80 +121,20 @@ const myData = [
   },
 ];
 
-let kenya_border = [];
-
-// const world = Globe()(document.getElementById("globeViz"))
-//   .globeImageUrl("img/earth.jpg")
-//   .backgroundImageUrl(
-//     "//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
-//   )
-
-//   .htmlElementsData(myData)
-//   .htmlElement((d) => {
-//     const el = document.createElement("div");
-//     el.className = "marker-wrapper";
-
-//     el.innerHTML = `
-//         <div class="pulse" style="border-color: ${d.color}">${d.name}</div>
-
-//       `;
-
-//     el.onmouseover = () => console.log("Hovering over " + d.name);
-//     el.onclick = () => {
-//       world.controls().autoRotate = false;
-//       p_card.style.right = "200px";
-//       world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
-//     };
-
-//     //dialog window
-//     document.getElementById("projects_card").classList.add("active");
-//     document.getElementById("card_title").innerText = d.name;
-//     document.getElementById(
-//       "card_description"
-//     ).innerText = `This is my work in ${d.name}.`;
-//     return el;
-//   });
-
-// const colorScale = scaleSequentialSqrt(interpolateYlOrRd)
-// // GDP per capita (avoiding countries with small pop)
-// const getVal = feat => feat.properties.GDP_MD_EST / Math.max(1e5, feat.properties.POP_EST);
-
-// fetch('https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson').then(res => res.json()).then(countries =>
-// {
-//   const maxVal = Math.max(...countries.features.map(getVal));
-
-//   const world = new Globe(document.getElementById('globeViz'))
-//     .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg')
-//     .backgroundImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png')
-//     .lineHoverPrecision(0)
-//     .polygonsData(countries.features.filter(d => d.properties.ISO_A2 !== 'AQ'))
-//     .polygonAltitude(0.06)
-
-//     .polygonSideColor(() => 'rgba(0, 100, 0, 0.15)')
-//     .polygonStrokeColor(() => '#111')
-//     .polygonLabel(({ properties: d }) => `
-//       <b>${d.ADMIN} (${d.ISO_A2}):</b> <br />
-//       GDP: <i>${d.GDP_MD_EST}</i> M$<br/>
-//       Population: <i>${d.POP_EST}</i>
-//     `)
-//     .onPolygonHover(hoverD => world
-//       .polygonAltitude(d => d === hoverD ? 0.12 : 0.06)
-//       .polygonCapColor(d => d === hoverD ? 'steelblue' : colorScale(getVal(d)))
-//     )
-//     .polygonsTransitionDuration(300);
-// });
-
-//fetch countries borders
 const p_card = document.getElementById("projects_card");
 const close_button = document.getElementById("close_button");
 
-fetch("../data/countries.geojson")
+fetch(
+  "https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson"
+)
   .then((res) => res.json())
   .then((countries) => {
     const world = new Globe(document.getElementById("globeViz"))
-      .globeImageUrl("img/earth.jpg")
+      .globeImageUrl(
+        "https://cdn.jsdelivr.net/npm/three-globe@2.45.0/example/img/earth-day.jpg"
+      )
       .backgroundImageUrl(
-        "//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
+        "https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
       )
       .lineHoverPrecision(0)
       .polygonsData(
