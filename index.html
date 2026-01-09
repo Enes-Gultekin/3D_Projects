@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects Portfolio - Globe</title>
+    <link rel="stylesheet" href="style/style_projects.css" />
+
+    <style></style>
+
+    <script src="//unpkg.com/globe.gl"></script>
+  </head>
+  <body>
+    <div id="globeViz"></div>
+    <div id="projects_card">
+      <h2 id="card_title"></h2>
+      <p id="card_description"></p>
+      <div id="card_tags"></div>
+      <a id="card_link" class="project-btn">View Full Project</a>
+
+      <button id="close_button" >Close</button>
+    </div>
+
+    <button id="gallery_toggle">Browse All Projects</button>
+
+<div id="gallery_overlay" class="hidden">
+    <div class="gallery_content">
+        <button id="close_gallery">&times;</button>
+        <h1>Project Portfolio</h1>
+        <div id="project_grid"></div>
+    </div>
+</div>
+    <script type="" src="script/script_projects.js"></script>
+
+  </body>
+</html>
