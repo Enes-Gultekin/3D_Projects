@@ -1,5 +1,18 @@
 const myData = [
   {
+    lat: 49.5583505905056,
+    lng: 6.863928309276275,
+    ISO_A2: "DE",
+    color: "#6c5ce7",
+    name: "Trier, Germany",
+    title:
+      "Mitigating Wildlife Damage: Wild Boar Risk & Vineyard Suitability Analysis in Huwer Valley",
+    description:
+      "A spatial risk analysis identifying vineyard areas vulnerable to wild boar intrusion. Using cost-distance modeling and suitability analysis, the project delivered insights that led to a 15% reduction in wildlife-related agricultural damage.",
+    tags: ["Cost Distance", "Suitability Modeling", "ArcGIS Pro"],
+    link: "", // You can link to your term paper if hosted
+  },
+  {
     lat: -0.5245208104057184,
     lng: 36.753387728832166,
     name: "Kenya",
@@ -41,11 +54,7 @@ const myData = [
     description:
       "Investigating the response of vegetation to rainfall using MODIS time-series. This project combines Distributed Lag Modeling (DLM) with Random Forest regression to analyze how environmental variables like aridity and topography influence biomass sensitivity across Botswana.",
     link: "",
-    tags: [
-      "DLM",
-      "Random Forest",
-      "Time-Series",
-    ],
+    tags: ["DLM", "Random Forest", "Time-Series"],
   },
   {
     lat: 51.521980853860214,
@@ -89,14 +98,13 @@ const myData = [
     lat: 49.75144630859725,
     lng: 6.6424924590002945,
     ISO_A2: "DE",
-    name: "Trier",
+    name: "Trier, Germany",
     color: "#ff4757", // Red for energy/heat
     title: "Optimizing Rooftop Solar Potential",
     description:
       "Spatial analysis to assess solar potential of urban rooftops in Trier. Calculated aspect, slope, and solar radiation from DSM/DTM data to identify optimal PV surfaces.",
     tags: ["3D Analysis", "Renewable Energy", "Solar Modeling"],
     link: "",
-
   },
   {
     lat: 35.6762,
@@ -240,7 +248,7 @@ fetch("../data/countries.geojson")
 
         return el;
       });
-      //close button attributes
+    //close button attributes
     document.getElementById("close_button").onclick = () => {
       p_card.style.left = "-1000px";
       document.getElementById("projects_card").classList.remove("active");
@@ -254,33 +262,39 @@ fetch("../data/countries.geojson")
 
 // world.controls().autoRotate = true;
 
-
-const galleryToggle = document.getElementById('gallery_toggle');
-const galleryOverlay = document.getElementById('gallery_overlay');
-const closeGallery = document.getElementById('close_gallery');
-const projectGrid = document.getElementById('project_grid');
+const galleryToggle = document.getElementById("gallery_toggle");
+const galleryOverlay = document.getElementById("gallery_overlay");
+const closeGallery = document.getElementById("close_gallery");
+const projectGrid = document.getElementById("project_grid");
 
 myData.forEach((d, index) => {
-    const card = document.createElement('div');
-    card.className = 'gallery_card';
-    card.innerHTML = `
-        <div style="color: ${d.color}; font-size: 0.8rem; margin-bottom: 5px;">📍 ${d.name}</div>
+  const card = document.createElement("div");
+  card.className = "gallery_card";
+  card.innerHTML = `
+        <div style="color: ${
+          d.color
+        }; font-size: 0.8rem; margin-bottom: 5px;">📍 ${d.name}</div>
         <h3 style="margin: 0 0 10px 0; font-size: 1.1rem;">${d.title}</h3>
         <div class="card_tags_mini">
-            ${d.tags.slice(0, 3).map(t => `<span class="tech-tag" style="font-size: 0.6rem;">${t}, </span>`).join('')}
+            ${d.tags
+              .slice(0, 3)
+              .map(
+                (t) =>
+                  `<span class="tech-tag" style="font-size: 0.6rem;">${t}, </span>`
+              )
+              .join("")}
         </div>
     `;
 
+  card.onclick = () => {
+    galleryOverlay.classList.add("hidden");
+    const markers = document.querySelectorAll(".marker-wrapper");
+    markers[index].click();
+  };
 
-    card.onclick = () => {
-        galleryOverlay.classList.add('hidden');
-        const markers = document.querySelectorAll('.marker-wrapper');
-        markers[index].click();
-    };
-
-    projectGrid.appendChild(card);
+  projectGrid.appendChild(card);
 });
 
 // 2. Open-Close Projects Window
-galleryToggle.onclick = () => galleryOverlay.classList.remove('hidden');
-closeGallery.onclick = () => galleryOverlay.classList.add('hidden');
+galleryToggle.onclick = () => galleryOverlay.classList.remove("hidden");
+closeGallery.onclick = () => galleryOverlay.classList.add("hidden");
