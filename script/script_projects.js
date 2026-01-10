@@ -21,7 +21,7 @@ const myData = [
     color: "red",
     ISO_A2: "KE",
     description:
-      "This project showcases advanced remote sensing abilities through the comprehensive monitoring of forest change in Western and Central Kenya from 2001 to 2021. Utilizing Landsat satellite data, the study employs the FORCE framework for processing, including data cubing, cloud and shadow detection, and radiometric correction to generate Analysis Ready Data (ARD) and Highly Analysis-Ready Data (hARD). A supervised machine learning approach, specifically a Random Forest classifier, was trained with multi-temporal spectral metrics and validated with an 84% overall accuracy to classify land cover changes, identifying patterns of forest gain, loss, and stability. The project demonstrates proficiency in satellite image processing, machine learning for land cover classification, time-series analysis, and geospatial data visualization to provide critical insights for forest conservation and management.",
+      "Analyzed two decades of forest change in Kenya using Landsat archives and the FORCE framework for ARD generation. Employed a Random Forest machine learning model to classify multi-temporal spectral metrics, achieving 84% accuracy in mapping forest stability and degradation.",
     tags: [
       "Landsat",
       "Machine Learning",
@@ -62,7 +62,7 @@ const myData = [
     name: "London, UK",
     title: "Spatial Analysis of Fast-Food Venues in London",
     url: " data/britain_border.geojson",
-    color: "white",
+    color: "#064924ff",
     ISO_A2: "GB",
     description:
       "Analyzes of the spatial distribution of McDonald's, Burger King, and Five Guys using Foursquare data. It analyzes clustering and randomness through Complete Spatial Randomness (CSR), Moran's I, and LISA tests. The findings indicate significant clustering of fast-food venues, especially McDonald's, across London. There is a weak positive correlation between population size and venue numbers, and overall spatial autocorrelation among wards is minimal, despite some localized clusters",
@@ -95,7 +95,7 @@ const myData = [
     tags: ["Time-Series", "NDVI", "Pattern Recognition"],
   },
   {
-    lat: 49.75144630859725,
+    lat: 53.559264178079786,
     lng: 6.6424924590002945,
     ISO_A2: "DE",
     name: "Trier, Germany",
@@ -137,6 +137,10 @@ fetch(
         "https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
       )
       .lineHoverPrecision(0)
+      .pointOfView(
+        { lat: 12.629227643255405, lng: 23.437337377159764, altitude: 1.5 },
+        1000
+      )
       .polygonsData(
         countries.features.filter((d) =>
           myData.some((item) => item.ISO_A2 === d.properties.ISO_A2)
@@ -149,9 +153,8 @@ fetch(
       .polygonStrokeColor(() => "#111")
       .polygonLabel(
         ({ properties: d }) => `
-          <b>${d.ADMIN} (${d.ISO_A2}):</b> <br />
-          GDP: <i>${d.GDP_MD_EST}</i> M$<br/>
-          Population: <i>${d.POP_EST}</i>
+          ${d.ADMIN}
+
         `
       )
       .onPolygonHover((hoverD) =>
@@ -162,9 +165,11 @@ fetch(
       .htmlElement((d) => {
         const el = document.createElement("div");
         el.className = "marker-wrapper";
+        el.id = "marker";
+        el.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill=${d.color} class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg> <i class="bi bi-geo-alt-fill"></i>
 
-        el.innerHTML = `
-        <div class="pulse" style="border-color: ${d.color}"><img id="icon" src="img/karte.png" alt="">${d.name}</div>
 
       `;
 
@@ -187,12 +192,25 @@ fetch(
         //dialog window
 
         return el;
+      })
+      .onPolygonClick((d) => {
+        console.log(d.geometry.coordinates[0][5]),
+          world.pointOfView(
+            {
+              lat: d.geometry.coordinates[0][8][1],
+              lng: d.geometry.coordinates[0][8][0],
+              altitude: 0.8,
+            },
+            1000
+          ),
+          (world.controls().autoRotate = false);
+        document.getElementById("marker").style.display = "block";
       });
     //close button attributes
     document.getElementById("close_button").onclick = () => {
       p_card.style.left = "-1000px";
       document.getElementById("projects_card").classList.remove("active");
-      world.pointOfView({ altitude: 2.5 }, 1000);
+      world.pointOfView({ altitude: 1.5 }, 1000);
       world.controls().autoRotate = true;
       world.controls().autoRotateSpeed = 0.2;
       world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
