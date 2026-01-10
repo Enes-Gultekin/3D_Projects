@@ -125,13 +125,13 @@ const p_card = document.getElementById("projects_card");
 const close_button = document.getElementById("close_button");
 
 fetch(
-  "https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson"
+  "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/main/data/countries.geojson"
 )
   .then((res) => res.json())
   .then((countries) => {
     const world = new Globe(document.getElementById("globeViz"))
       .globeImageUrl(
-        "https://cdn.jsdelivr.net/npm/three-globe@2.45.0/example/img/earth-day.jpg"
+        "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/main/img/earth.jpg"
       )
       .backgroundImageUrl(
         "https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
