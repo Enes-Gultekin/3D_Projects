@@ -19,7 +19,7 @@ body {
   pointer-events: auto !important;
   cursor: pointer;
 }
-.marker-wrapper:hover{
+.marker-wrapper:hover {
   width: 500px;
 }
 
@@ -51,18 +51,17 @@ body {
   overflow-y: auto;
   font-size: larger;
 }
-#card_title{
+#card_title {
   font-size: larger;
-  font-family:  sans-serif;
+  font-family: sans-serif;
 }
-#card_description{
+#card_description {
   font-size: smaller;
-  font-family:  Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
-#card_tags{
+#card_tags {
   font-size: small;
-  font-family:  sans-serif;
-
+  font-family: sans-serif;
 }
 
 #close_button {
@@ -74,9 +73,8 @@ body {
   color: white;
   border: none;
   font-size: larger;
-
 }
-#close_button:hover{
+#close_button:hover {
   background-color: rgba(134, 103, 103, 0.2);
   border-radius: 20%;
 }
@@ -179,10 +177,10 @@ body {
   cursor: pointer;
 }
 
-.bi{
+.bi {
   transition: width 0.4s;
 }
-.bi:hover{
+.bi:hover {
   width: 64px;
   height: 64px;
 }
