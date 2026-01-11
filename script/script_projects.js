@@ -107,8 +107,8 @@ const myData = [
     link: "",
   },
   {
-    lat: 36.37472999857792,
-    lng: 36.31672557848924,
+    lat: 39.59531719832839,
+    lng: 32.713548977712804,
     ISO_A2: "JP",
     name: "Global (Seismic)",
     color: "#ff7f50",

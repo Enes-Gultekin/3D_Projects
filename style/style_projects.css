@@ -114,11 +114,11 @@ body {
   top: 50px;
   left: 20px;
   padding: 12px 24px;
-  background: rgba(13, 110, 253, 1);
-  border-width: 3px 0 0 3px;
+  background-color: rgba(10, 3, 3, 0.664);
   color: #ffffff;
+
   cursor: pointer;
-  font-weight: lighter;
+  font-weight: bold;
   font-size: large;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   border-radius: 10px;
@@ -127,7 +127,8 @@ body {
 }
 
 #gallery_toggle:hover {
-  background: rgba(10, 88, 202, 1);
+  background: rgb(185, 188, 194);
+  color: #000000c4;
 }
 
 #gallery_overlay {
