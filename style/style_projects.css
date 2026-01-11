@@ -127,8 +127,7 @@ body {
 }
 
 #gallery_toggle:hover {
-  background: rgb(185, 188, 194);
-  color: #000000c4;
+  background: rgba(27, 25, 25, 0.3);
 }
 
 #gallery_overlay {
@@ -213,8 +212,7 @@ body {
   text-shadow: 0px 0px 0px #1570cd;
 }
 .website:hover {
-  background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-  background-color: #1b3661;
+  background: rgba(27, 25, 25, 0.3);
 }
 .website:active {
   position: relative;
