@@ -107,8 +107,8 @@ const myData = [
     link: "",
   },
   {
-    lat: 36.37472999857792,
-    lng: 36.31672557848924,
+    lat: 35.6762,
+    lng: 139.6503,
     ISO_A2: "JP",
     name: "Global (Seismic)",
     color: "#ff7f50",
@@ -123,14 +123,15 @@ const myData = [
 
 const p_card = document.getElementById("projects_card");
 const close_button = document.getElementById("close_button");
+const world = new Globe(document.getElementById("globeViz"))
 
 fetch(
   "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/main/data/countries.geojson"
 )
   .then((res) => res.json())
   .then((countries) => {
-    const world = new Globe(document.getElementById("globeViz"))
-      .globeImageUrl(
+
+      world.globeImageUrl(
         "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/main/img/earth.jpg"
       )
       .backgroundImageUrl(
@@ -141,26 +142,7 @@ fetch(
         { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
         1000
       )
-      .polygonsData(
-        countries.features.filter((d) =>
-          myData.some((item) => item.ISO_A2 === d.properties.ISO_A2)
-        )
-      )
-      .polygonAltitude(0.06)
-      .polygonCapColor(() => "rgba(122, 10, 117, 0.42)")
-      .showGraticules(true)
-      .polygonSideColor(() => "rgba(0, 100, 0, 0.15)")
-      .polygonStrokeColor(() => "#111")
-      .polygonLabel(
-        ({ properties: d }) => `
-          ${d.ADMIN}
 
-        `
-      )
-      .onPolygonHover((hoverD) =>
-        world.polygonAltitude((d) => (d === hoverD ? 0.12 : 0.06))
-      )
-      .polygonsTransitionDuration(300)
       .htmlElementsData(myData)
       .htmlElement((d) => {
         const el = document.createElement("div");
@@ -173,16 +155,7 @@ fetch(
 
       `;
         world.onGlobeClick(() => {
-          p_card.style.left = "-1000px";
-          document.getElementById("projects_card").classList.remove("active");
-          world.pointOfView(
-            { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
-            1000
-          );
-          world.controls().autoRotate = true;
-          world.controls().autoRotateSpeed = 0.2;
-          world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
-          document.getElementById("close_button").style.display = "none";
+          back2default()
         });
 
         el.onmouseover = () => console.log("Hovering over " + d.name);
@@ -222,16 +195,7 @@ fetch(
       });
     //close button attributes
     document.getElementById("close_button").onclick = () => {
-      p_card.style.left = "-1000px";
-      document.getElementById("projects_card").classList.remove("active");
-      world.pointOfView(
-        { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
-        1000
-      );
-      world.controls().autoRotate = true;
-      world.controls().autoRotateSpeed = 0.2;
-      world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
-      document.getElementById("close_button").style.display = "none";
+      back2default()
     };
   });
 
@@ -273,3 +237,16 @@ myData.forEach((d, index) => {
 // 2. Open-Close Projects Window
 galleryToggle.onclick = () => galleryOverlay.classList.remove("hidden");
 closeGallery.onclick = () => galleryOverlay.classList.add("hidden");
+
+function back2default(){
+  p_card.style.left = "-1000px";
+      document.getElementById("projects_card").classList.remove("active");
+      world.pointOfView(
+        { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
+        1000
+      );
+      world.controls().autoRotate = true;
+      world.controls().autoRotateSpeed = 0.2;
+      world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
+      document.getElementById("close_button").style.display = "none";
+}

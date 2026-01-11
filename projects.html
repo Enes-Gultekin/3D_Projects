@@ -4,22 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects Portfolio - Globe</title>
-    <link rel="stylesheet" href="style/style_projects.css" />
+    <link rel="stylesheet" href="style/style_projects2.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
     <script src="https://unpkg.com/globe.gl"></script>
-    <style></style>
   </head>
   <body>
     <div id="globeViz"></div>
     <div id="projects_card">
+      <button id="close_button" type="button">x</button>
       <h2 id="card_title"></h2>
+      <hr>
       <p id="card_description"></p>
+      <hr>
       <div id="card_tags"></div>
-      <a id="card_link" class="project-btn">View Full Project</a>
-
-      <button id="close_button">Close</button>
+      <div class="container"><a target="_blank" class="website" id="website">Website</a><a class="website" id="git">Github</a></div>
     </div>
 
-    <button id="gallery_toggle">Browse All Projects</button>
+    <button id="gallery_toggle">To All Projects</button>
 
     <div id="gallery_overlay" class="hidden">
       <div class="gallery_content">
@@ -28,6 +36,11 @@
         <div id="project_grid"></div>
       </div>
     </div>
-    <script type="text/javascript" src="script/script_projects.js"></script>
+    <script type="" src="script/script_projects2.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

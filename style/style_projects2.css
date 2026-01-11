@@ -74,6 +74,7 @@ body {
   border: none;
   font-size: xx-large;
   width: 10%;
+
 }
 #close_button:hover {
   background-color: rgba(134, 103, 103, 0.2);
@@ -197,60 +198,67 @@ body {
   grid-template-areas: "website details";
 }
 
+
+
 .website {
-  box-shadow: inset 0px 1px 0px 0px #152841;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: monospace;
-  font-size: 15px;
-  padding: 6px 27px;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #182f49 5%, #134daa 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:  monospace;
+	font-size:15px;
+	padding:6px 27px;
   margin-top: 10px;
-  text-decoration: none;
-  text-shadow: 0px 0px 0px #1570cd;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #1570cd;
 }
 .website:hover {
-  background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-  background-color: #1b3661;
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1b3661;
 }
 .website:active {
-  position: relative;
-  top: 1px;
+	position:relative;
+	top:1px;
 }
+
 
 .details {
   grid-area: details;
 }
 @media only screen and (max-width: 600px) {
-  #globeViz {
-    width: 100vw;
-    height: 100vh;
-  }
-  #projects_card {
-    position: fixed;
-    top: 10%;
-    left: -1000px;
-    transform: translateX(-26%);
-    width: 100%;
+ #globeViz {
+  width: 100vw;
+  height: 100vh;
 
-    background: rgba(20, 20, 20, 0.4);
-    backdrop-filter: blur(10px);
-    color: white;
-    padding: 30px 30px 5px 30px;
-    border-radius: 20px 20px 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-    transition: left 0.9s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: 1000;
-    overflow-y: hidden;
-    font-size: larger;
-  }
-  #card_description {
-    font-size: smaller;
-    font-family: Arial, Helvetica, sans-serif "Abel", sans-serif;
-    overflow-y: scroll;
-    height: 150px;
-  }
+}
+#projects_card {
+  position: fixed;
+  top: 10%;
+  left: -1000px;
+  transform: translateX(-26%);
+  width: 100%;
+
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 30px 30px 5px 30px;
+  border-radius: 20px 20px 20px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  transition: left 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1000;
+  overflow-y: hidden;
+  font-size: larger;
+}
+#card_description {
+  font-size: smaller;
+  font-family: Arial, Helvetica, sans-serif "Abel", sans-serif;
+  overflow-y: scroll;
+  height: 150px;
+}
+
 }
