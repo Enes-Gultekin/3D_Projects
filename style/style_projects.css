@@ -58,7 +58,6 @@ body {
 #card_description {
   font-size: smaller;
   font-family: Arial, Helvetica, sans-serif "Abel", sans-serif;
-  overflow-y: scroll;
 }
 #card_tags {
   font-size: small;
