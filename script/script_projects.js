@@ -138,7 +138,7 @@ fetch(
       )
       .lineHoverPrecision(0)
       .pointOfView(
-        { lat: 12.629227643255405, lng: 23.437337377159764, altitude: 1.5 },
+        { lat:26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
         1000
       )
       .polygonsData(
@@ -181,12 +181,15 @@ fetch(
 
           document.getElementById(
             "card_title"
-          ).innerText = `${d.title}(${d.name})`;
+          ).innerText= `${d.title}(${d.name})`;
           document.getElementById("card_description").innerText = d.description;
-          document.getElementById("card_link").setAttribute("href", d.link);
           document.getElementById("card_tags").innerText = d.tags;
+
+          document.getElementById("website").setAttribute("href", d.link);
+          document.getElementById("git").setAttribute("href", d.link);
           world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
           document.getElementById("close_button").style.display = "block";
+
         };
 
         //dialog window
@@ -210,7 +213,7 @@ fetch(
     document.getElementById("close_button").onclick = () => {
       p_card.style.left = "-1000px";
       document.getElementById("projects_card").classList.remove("active");
-      world.pointOfView({ altitude: 1.5 }, 1000);
+      world.pointOfView({lat:26.80933469895976, lng: 30.5291613294838, altitude: 1.5 }, 1000);
       world.controls().autoRotate = true;
       world.controls().autoRotateSpeed = 0.2;
       world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
