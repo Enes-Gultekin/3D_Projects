@@ -99,7 +99,7 @@ const myData = [
     lng: 6.6424924590002945,
     ISO_A2: "DE",
     name: "Trier, Germany",
-    color: "#ff4757", // Red for energy/heat
+    color: "#ff4757",
     title: "Optimizing Rooftop Solar Potential",
     description:
       "Spatial analysis to assess solar potential of urban rooftops in Trier. Calculated aspect, slope, and solar radiation from DSM/DTM data to identify optimal PV surfaces.",
@@ -109,7 +109,7 @@ const myData = [
   {
     lat: 39.59531719832839,
     lng: 32.713548977712804,
-    ISO_A2: "TR",
+    ISO_A2: "",
     name: "Global (Seismic)",
     color: "#ff7f50",
     title: "Global Earthquake Monitoring: Real-Time Seismic Risk Visualization",
@@ -208,7 +208,7 @@ fetch(
         return el;
       })
       .onPolygonClick((d) => {
-        console.log(d.geometry.coordinates[0][5]),
+        console.log(d.geometry.coordinates[0][8]),
           world.pointOfView(
             {
               lat: d.geometry.coordinates[0][8][1],
@@ -218,7 +218,7 @@ fetch(
             1000
           ),
           (world.controls().autoRotate = false);
-        document.getElementById("marker").style.display = "block";
+
       });
     //close button attributes
     document.getElementById("close_button").onclick = () => {

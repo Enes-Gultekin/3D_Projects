@@ -114,9 +114,8 @@ body {
   top: 50px;
   left: 20px;
   padding: 12px 24px;
-  background-color: rgba(10, 3, 3, 0.664);
+  background-color: rgba(10, 3, 3,0);
   color: #ffffff;
-
   cursor: pointer;
   font-weight: bold;
   font-size: large;
