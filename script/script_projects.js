@@ -109,7 +109,7 @@ const myData = [
   {
     lat: 39.59531719832839,
     lng: 32.713548977712804,
-    ISO_A2: "",
+    ISO_A2: "TR",
     name: "Global (Seismic)",
     color: "#ff7f50",
     title: "Global Earthquake Monitoring: Real-Time Seismic Risk Visualization",
@@ -218,7 +218,6 @@ fetch(
             1000
           ),
           (world.controls().autoRotate = false);
-
       });
     //close button attributes
     document.getElementById("close_button").onclick = () => {
