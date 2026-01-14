@@ -183,18 +183,18 @@ fetch(
 
 
       `;
-        // world.onGlobeClick(() => {
-        //   p_card.style.left = "-1000px";
-        //   document.getElementById("projects_card").classList.remove("active");
-        //   world.pointOfView(
-        //     { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
-        //     1000
-        //   );
-        //   world.controls().autoRotate = true;
-        //   world.controls().autoRotateSpeed = 0.2;
-        //   world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
-        //   document.getElementById("close_button").style.display = "none";
-        // });
+        world.onGlobeRightClick(() => {
+          p_card.style.left = "-1000px";
+          document.getElementById("projects_card").classList.remove("active");
+          world.pointOfView(
+            { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
+            1000
+          );
+          world.controls().autoRotate = true;
+          world.controls().autoRotateSpeed = 0.2;
+          world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
+          document.getElementById("close_button").style.display = "none";
+        });
 
         el.onmouseover = () => console.log("Hovering over " + d.name);
         el.onclick = () => {
