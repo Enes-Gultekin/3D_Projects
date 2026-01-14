@@ -11,7 +11,7 @@ const myData = [
       "A spatial risk analysis identifying vineyard areas vulnerable to wild boar intrusion. Using cost-distance modeling and suitability analysis, the project delivered insights that led to a 15% reduction in wildlife-related agricultural damage.",
     tags: ["Cost Distance", "Suitability Modeling", "ArcGIS Pro"],
     link: "wild_bo.html",
-    git: "",
+    git: "cons.html",
   },
   {
     lat: -0.5245208104057184,
@@ -31,7 +31,7 @@ const myData = [
       "Time-Series",
     ],
     link: "kenya.html",
-    git: "",
+    git: "cons.html",
   },
   {
     lat: 2.129466406578487,
@@ -45,7 +45,7 @@ const myData = [
       "This project utilizes the Revised Universal Soil Loss Equation (RUSLE) to assess soil erosion risks in West Kenya. By analyzing key factors such as rainfall patterns, soil characteristics, topography, land cover, and conservation practices, the study estimates erosion rates and identifies vulnerable areas. The findings provide valuable insights for sustainable land management and erosion control strategies, helping to mitigate soil degradation and promote environmental conservation.",
     tags: ["RUSLE Modeling", "Soil Erosion", "Environmental GIS", "Hydrology"],
     link: "https://storymaps.arcgis.com/stories/a5f12c45dcb843cbaeaaba49c35c140a",
-    git: "",
+    git: "cons.html",
   },
   {
     lat: -22.392482957234137,
@@ -59,7 +59,7 @@ const myData = [
       "Investigating the response of vegetation to rainfall using MODIS time-series. This project combines Distributed Lag Modeling (DLM) with Random Forest regression to analyze how environmental variables like aridity and topography influence biomass sensitivity across Botswana.",
     link: "botswana.html",
     tags: ["DLM", "Random Forest", "Time-Series"],
-    git: "",
+    git: "cons.html",
   },
   {
     lat: 51.521980853860214,
@@ -73,7 +73,7 @@ const myData = [
       "Analyzes of the spatial distribution of McDonald's, Burger King, and Five Guys using Foursquare data. It analyzes clustering and randomness through Complete Spatial Randomness (CSR), Moran's I, and LISA tests. The findings indicate significant clustering of fast-food venues, especially McDonald's, across London. There is a weak positive correlation between population size and venue numbers, and overall spatial autocorrelation among wards is minimal, despite some localized clusters",
     tags: ["Spatial Regression", "Spatial Autocorrelation", "R Programming"],
     link: "london.html",
-    git: "",
+    git: "cons.html",
   },
   {
     lat: 50.521980853860214,
@@ -85,7 +85,7 @@ const myData = [
     ISO_A2: "DE",
     description:
       "A custom Python plugin for QGIS that automates real-time water level data obtained from the Pegelonline API. Built with PyQGIS and PyQt5 for seamless monitoring workflows.",
-    link: "",
+    link: "cons.html",
     tags: ["QGIS Plugin", "Python", "REST API"],
     git: "https://github.com/Enes-Gultekin/pegel_plugin",
   },
@@ -101,7 +101,7 @@ const myData = [
       "This research implements a 'syndrome-approach' to map and interpret long-term land-use and land-cover changes across the Iberian Peninsula over a 32-year period. Utilizing GIMMS NDVI time-series data, I fitted Fourier Polynomials to derive annual phenological properties, including peaking times, magnitudes, and integrals. Using the Seasonal Kendall test, monotonic trends were identified to pinpoint significant ecological shifts.",
     link: "peninsula.html",
     tags: ["Time-Series", "NDVI", "Pattern Recognition"],
-    git: "",
+    git: "cons.html",
   },
   {
     lat: 53.559264178079786,
@@ -113,7 +113,7 @@ const myData = [
     description:
       "Spatial analysis to assess solar potential of urban rooftops in Trier. Calculated aspect, slope, and solar radiation from DSM/DTM data to identify optimal PV surfaces.",
     tags: ["3D Analysis", "Renewable Energy", "Solar Modeling"],
-    link: "",
+    link: "cons.html",
     git: "https://github.com/Enes-Gultekin/Optimizing_Rooftop_Solar_Potential",
   },
   {
@@ -172,6 +172,7 @@ fetch(
       )
       .polygonsTransitionDuration(300)
       .htmlElementsData(myData)
+      .htmlAltitude(0.07)
       .htmlElement((d) => {
         const el = document.createElement("div");
         el.className = "marker-wrapper";
@@ -182,18 +183,18 @@ fetch(
 
 
       `;
-        world.onGlobeClick(() => {
-          p_card.style.left = "-1000px";
-          document.getElementById("projects_card").classList.remove("active");
-          world.pointOfView(
-            { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
-            1000
-          );
-          world.controls().autoRotate = true;
-          world.controls().autoRotateSpeed = 0.2;
-          world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
-          document.getElementById("close_button").style.display = "none";
-        });
+        // world.onGlobeClick(() => {
+        //   p_card.style.left = "-1000px";
+        //   document.getElementById("projects_card").classList.remove("active");
+        //   world.pointOfView(
+        //     { lat: 26.80933469895976, lng: 30.5291613294838, altitude: 1.5 },
+        //     1000
+        //   );
+        //   world.controls().autoRotate = true;
+        //   world.controls().autoRotateSpeed = 0.2;
+        //   world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
+        //   document.getElementById("close_button").style.display = "none";
+        // });
 
         el.onmouseover = () => console.log("Hovering over " + d.name);
         el.onclick = () => {
@@ -207,23 +208,12 @@ fetch(
           document.getElementById("card_description").innerText = d.description;
           document.getElementById("card_tags").innerText = d.tags;
 
-          document.getElementById("website").setAttribute("href", d.link);
           document.getElementById("git").setAttribute("href", d.git);
+          document.getElementById("website").setAttribute("href", d.link);
 
-          if (d.git === "") {
-
-            document.getElementById("git").style.display = "none";
-          }
-          if (d.link === "") {
-
-            document.getElementById("website").style.display = "none";
-          }else{
-            document.getElementById("website").style.display = "block";
-        };
           world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
           document.getElementById("close_button").style.display = "block";
-        }
-
+        };
 
         //dialog window
 
