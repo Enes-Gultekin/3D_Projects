@@ -208,6 +208,7 @@ fetch(
           document.getElementById("card_tags").innerText = d.tags;
 
           document.getElementById("website").setAttribute("href", d.link);
+          document.getElementById("git").setAttribute("href", d.git);
 
           if (d.git === "") {
 
@@ -215,11 +216,14 @@ fetch(
           }
           if (d.link === "") {
 
-            document.getElementById("link").style.display = "none";
-          }
+            document.getElementById("website").style.display = "none";
+          }else{
+            document.getElementById("website").style.display = "block";
+        };
           world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
           document.getElementById("close_button").style.display = "block";
-        };
+        }
+
 
         //dialog window
 
