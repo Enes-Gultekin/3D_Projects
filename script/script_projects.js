@@ -10,7 +10,7 @@ const myData = [
     description:
       "A spatial risk analysis identifying vineyard areas vulnerable to wild boar intrusion. Using cost-distance modeling and suitability analysis, the project delivered insights that led to a 15% reduction in wildlife-related agricultural damage.",
     tags: ["Cost Distance", "Suitability Modeling", "ArcGIS Pro"],
-    link: "../projects/wild_bo.html",
+    link: "https://github.com/Enes-Gultekin/3D_Projects/projects/wild_bo.html",
     git: "",
   },
   {
@@ -30,7 +30,7 @@ const myData = [
       "FORCE",
       "Time-Series",
     ],
-    link: "../projects/kenya.html",
+    link: "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/1a375d624cb2cd7970b77a690829922f11822469/projects/kenya.html",
     git: "",
   },
   {
@@ -57,7 +57,7 @@ const myData = [
     ISO_A2: "BW",
     description:
       "Investigating the response of vegetation to rainfall using MODIS time-series. This project combines Distributed Lag Modeling (DLM) with Random Forest regression to analyze how environmental variables like aridity and topography influence biomass sensitivity across Botswana.",
-    link: "../projects/botswana.html",
+    link: "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/1a375d624cb2cd7970b77a690829922f11822469/projects/botswana.html",
     tags: ["DLM", "Random Forest", "Time-Series"],
     git: "",
   },
@@ -72,7 +72,7 @@ const myData = [
     description:
       "Analyzes of the spatial distribution of McDonald's, Burger King, and Five Guys using Foursquare data. It analyzes clustering and randomness through Complete Spatial Randomness (CSR), Moran's I, and LISA tests. The findings indicate significant clustering of fast-food venues, especially McDonald's, across London. There is a weak positive correlation between population size and venue numbers, and overall spatial autocorrelation among wards is minimal, despite some localized clusters",
     tags: ["Spatial Regression", "Spatial Autocorrelation", "R Programming"],
-    link: "../projects/london.html",
+    link: "https://raw.githubusercontent.com/Enes-Gultekin/3D_Projects/1a375d624cb2cd7970b77a690829922f11822469/projects/london.html",
     git: "",
   },
   {
@@ -99,7 +99,7 @@ const myData = [
     ISO_A2: "ES",
     description:
       "This research implements a 'syndrome-approach' to map and interpret long-term land-use and land-cover changes across the Iberian Peninsula over a 32-year period. Utilizing GIMMS NDVI time-series data, I fitted Fourier Polynomials to derive annual phenological properties, including peaking times, magnitudes, and integrals. Using the Seasonal Kendall test, monotonic trends were identified to pinpoint significant ecological shifts.",
-    link: "../projects/peninsula.html",
+    link: "https://github.com/Enes-Gultekin/3D_Projects/tree/main/projects/peninsula.html",
     tags: ["Time-Series", "NDVI", "Pattern Recognition"],
     git: "",
   },
