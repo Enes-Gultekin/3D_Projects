@@ -156,7 +156,7 @@ fetch(
           myData.some((item) => item.ISO_A2 === d.properties.ISO_A2)
         )
       )
-      .polygonAltitude(0.06)
+      .polygonAltitude(0)
       .polygonCapColor(() => "rgba(122, 10, 117, 0.42)")
       .showGraticules(true)
       .polygonSideColor(() => "rgba(0, 100, 0, 0.15)")
@@ -168,8 +168,7 @@ fetch(
         `
       )
       .onPolygonHover((hoverD) =>
-        world.polygonAltitude((d) => (d === hoverD ? 0.12 : 0.06))
-
+        world.polygonAltitude((d) => (d === hoverD ? 0.06 : 0.06))
       )
       .polygonsTransitionDuration(300)
       .htmlElementsData(myData)
@@ -194,20 +193,10 @@ fetch(
           world.controls().autoRotateSpeed = 0.2;
           world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
           document.getElementById("close_button").style.display = "none";
-
-
         });
 
         el.onmouseover = () => console.log("Hovering over " + d.name);
         el.onclick = () => {
-          if (d.git === "") {
-            console.log("git is empty");
-            document.getElementById("git").style.display = "none";
-          }
-          if (d.link === "") {
-            console.log("link is empty");
-            document.getElementById("website").style.display = "none";
-          }
           world.controls().autoRotate = false;
           p_card.style.left = "100px";
           document.getElementById("projects_card").classList.add("active");
@@ -219,7 +208,11 @@ fetch(
           document.getElementById("card_tags").innerText = d.tags;
 
           document.getElementById("website").setAttribute("href", d.link);
-          document.getElementById("git").setAttribute("href", d.git);
+
+          if (d.git === "") {
+            document.getElementById("git").setAttribute("href", d.git);
+            document.getElementById("git").style.display = "none";
+          }
           world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
           document.getElementById("close_button").style.display = "block";
         };
@@ -254,8 +247,6 @@ fetch(
       document.getElementById("close_button").style.display = "none";
     };
   });
-
-// world.controls().autoRotate = true;
 
 const galleryToggle = document.getElementById("gallery_toggle");
 const galleryOverlay = document.getElementById("gallery_overlay");
