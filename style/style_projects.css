@@ -18,6 +18,8 @@ body {
   align-items: center;
   pointer-events: auto !important;
   cursor: pointer;
+  z-index: 1000;
+
 }
 .marker-wrapper:hover {
   width: 500px;

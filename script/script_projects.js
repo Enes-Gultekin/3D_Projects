@@ -10,7 +10,8 @@ const myData = [
     description:
       "A spatial risk analysis identifying vineyard areas vulnerable to wild boar intrusion. Using cost-distance modeling and suitability analysis, the project delivered insights that led to a 15% reduction in wildlife-related agricultural damage.",
     tags: ["Cost Distance", "Suitability Modeling", "ArcGIS Pro"],
-    link: "", // You can link to your term paper if hosted
+    link: "../projects/wild_bo.html",
+    git: "",
   },
   {
     lat: -0.5245208104057184,
@@ -29,6 +30,8 @@ const myData = [
       "FORCE",
       "Time-Series",
     ],
+    link: "../projects/kenya.html",
+    git: "",
   },
   {
     lat: 2.129466406578487,
@@ -42,19 +45,21 @@ const myData = [
       "This project utilizes the Revised Universal Soil Loss Equation (RUSLE) to assess soil erosion risks in West Kenya. By analyzing key factors such as rainfall patterns, soil characteristics, topography, land cover, and conservation practices, the study estimates erosion rates and identifies vulnerable areas. The findings provide valuable insights for sustainable land management and erosion control strategies, helping to mitigate soil degradation and promote environmental conservation.",
     tags: ["RUSLE Modeling", "Soil Erosion", "Environmental GIS", "Hydrology"],
     link: "https://storymaps.arcgis.com/stories/a5f12c45dcb843cbaeaaba49c35c140a",
+    git: "",
   },
   {
     lat: -22.392482957234137,
     lng: 24.175533848483212,
-    name: "Bostwana",
+    name: "Botswana",
     title: "Rainfall-Biomass Interactions in Botswana",
     url: " data/bostwana_border.geojson",
     color: "cyan",
     ISO_A2: "BW",
     description:
       "Investigating the response of vegetation to rainfall using MODIS time-series. This project combines Distributed Lag Modeling (DLM) with Random Forest regression to analyze how environmental variables like aridity and topography influence biomass sensitivity across Botswana.",
-    link: "",
+    link: "../projects/botswana.html",
     tags: ["DLM", "Random Forest", "Time-Series"],
+    git: "",
   },
   {
     lat: 51.521980853860214,
@@ -67,6 +72,8 @@ const myData = [
     description:
       "Analyzes of the spatial distribution of McDonald's, Burger King, and Five Guys using Foursquare data. It analyzes clustering and randomness through Complete Spatial Randomness (CSR), Moran's I, and LISA tests. The findings indicate significant clustering of fast-food venues, especially McDonald's, across London. There is a weak positive correlation between population size and venue numbers, and overall spatial autocorrelation among wards is minimal, despite some localized clusters",
     tags: ["Spatial Regression", "Spatial Autocorrelation", "R Programming"],
+    link: "",
+    git: "",
   },
   {
     lat: 50.521980853860214,
@@ -80,6 +87,7 @@ const myData = [
       "A custom Python plugin for QGIS that automates real-time water level data obtained from the Pegelonline API. Built with PyQGIS and PyQt5 for seamless monitoring workflows.",
     link: "",
     tags: ["QGIS Plugin", "Python", "REST API"],
+    git: "https://github.com/Enes-Gultekin/pegel_plugin",
   },
   {
     lat: 41.02365621207687,
@@ -91,8 +99,9 @@ const myData = [
     ISO_A2: "ES",
     description:
       "This research implements a 'syndrome-approach' to map and interpret long-term land-use and land-cover changes across the Iberian Peninsula over a 32-year period. Utilizing GIMMS NDVI time-series data, I fitted Fourier Polynomials to derive annual phenological properties, including peaking times, magnitudes, and integrals. Using the Seasonal Kendall test, monotonic trends were identified to pinpoint significant ecological shifts.",
-    link: "",
+    link: "../projects/peninsula.html",
     tags: ["Time-Series", "NDVI", "Pattern Recognition"],
+    git: "",
   },
   {
     lat: 53.559264178079786,
@@ -105,6 +114,7 @@ const myData = [
       "Spatial analysis to assess solar potential of urban rooftops in Trier. Calculated aspect, slope, and solar radiation from DSM/DTM data to identify optimal PV surfaces.",
     tags: ["3D Analysis", "Renewable Energy", "Solar Modeling"],
     link: "",
+    git: "https://github.com/Enes-Gultekin/Optimizing_Rooftop_Solar_Potential",
   },
   {
     lat: 39.59531719832839,
@@ -116,8 +126,8 @@ const myData = [
     description:
       "An interactive monitoring system visualizing global seismic activity using real-time USGS feeds. Processes live GeoJSON data to map magnitude and depth, identifying tectonic hotspots for disaster management.",
     tags: ["Real-Time Data", "USGS API", "GeoJSON"],
-    link: "https://enes-gultekin.github.io/EarthQuake__monitoring_Project/",
-    linkText: "View Live Project",
+    link: "https://enes-gultekin.github.io/EarthQuake__monitoring_Project",
+    git: "https://github.com/Enes-Gultekin/pegel_plugin",
   },
 ];
 
@@ -159,6 +169,7 @@ fetch(
       )
       .onPolygonHover((hoverD) =>
         world.polygonAltitude((d) => (d === hoverD ? 0.12 : 0.06))
+
       )
       .polygonsTransitionDuration(300)
       .htmlElementsData(myData)
@@ -183,10 +194,20 @@ fetch(
           world.controls().autoRotateSpeed = 0.2;
           world.polygonCapColor(() => "rgba(155, 24, 148, 0.32)");
           document.getElementById("close_button").style.display = "none";
+
+
         });
 
         el.onmouseover = () => console.log("Hovering over " + d.name);
         el.onclick = () => {
+          if (d.git === "") {
+            console.log("git is empty");
+            document.getElementById("git").style.display = "none";
+          }
+          if (d.link === "") {
+            console.log("link is empty");
+            document.getElementById("website").style.display = "none";
+          }
           world.controls().autoRotate = false;
           p_card.style.left = "100px";
           document.getElementById("projects_card").classList.add("active");
@@ -198,7 +219,7 @@ fetch(
           document.getElementById("card_tags").innerText = d.tags;
 
           document.getElementById("website").setAttribute("href", d.link);
-          document.getElementById("git").setAttribute("href", d.link);
+          document.getElementById("git").setAttribute("href", d.git);
           world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
           document.getElementById("close_button").style.display = "block";
         };

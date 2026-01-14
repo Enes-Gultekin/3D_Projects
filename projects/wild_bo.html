@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail | Enes Gültekin</title>
+    <script
+      src="https://kit.fontawesome.com/your-code.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="back-btn">← Back to Globe</a>
+    </nav>
+
+    <header class="project-hero">
+      <div class="container">
+        <span class="category-tag">Geospatial Analysis</span>
+        <h1>Wild Boar Risk & Vineyard Suitability</h1>
+        <p class="subtitle"></p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>Study Area</h3>
+          <p>Ruwer Watershed + 500 m Buffer</p>
+        </div>
+        <div class="stat-card">
+          <h3>Tools</h3>
+          <p>ArcGIS Pro, QGIS, ModelBuilder</p>
+        </div>
+        <div class="stat-card">
+          <h3>Data</h3>
+          <p>
+            Copernicus Land Cover, DWD Climate Data, Digital Elevation Models
+            (DEM)
+          </p>
+        </div>
+      </section>
+
+      <div class="content-layout">
+        <article class="main-text">
+          <!-- PROJECT OVERVIEW -->
+          <h2>Project Overview</h2>
+          <p>
+            This project analyzes how environmental conditions and wildlife
+            movement influence vineyard suitability in the Ruwer watershed near
+            Trier, Germany. Using GIS-based modeling, the study evaluates
+            optimal vineyard locations and assesses the potential impact of wild
+            boar activity on vineyard abandonment.
+          </p>
+
+          <!-- MOTIVATION -->
+          <h3>Motivation</h3>
+          <ul>
+            <li>
+              The Trier–Moselle region offers ideal climatic conditions for
+              viticulture.
+            </li>
+            <li>
+              Wild boar populations have increased significantly in recent
+              decades.
+            </li>
+            <li>
+              The project investigates whether wild boar presence influences
+              vineyard abandonment.
+            </li>
+          </ul>
+
+          <div class="image-box">
+            <img src="img/study_Area_wild_bo.png" alt="Study Area Map" />
+            <span>Figure 1: Study Area</span>
+          </div>
+
+          <br /><br />
+
+          <!-- SUITABILITY MODEL -->
+          <h3>Vineyard Suitability Model</h3>
+          <p>
+            Vineyard suitability was determined using a multi-criteria model
+            combining topographic, climatic, soil, and vegetation factors.
+          </p>
+
+          <h4>Topographic Conditions</h4>
+          <ul>
+            <li>Slope: 10–25%</li>
+            <li>Aspect: SE–SW</li>
+            <li>Elevation: ≤ 260 m</li>
+          </ul>
+
+          <h4>Environmental Conditions</h4>
+          <ul>
+            <li>Precipitation: 400–1000 mm</li>
+            <li>Air temperature: ≥ 9°C</li>
+            <li>Soil temperature: ≥ 6°C</li>
+            <li>Soil pH: 5.5–8.5</li>
+            <li>Fuzzy NDVI: ≥ 0.5</li>
+          </ul>
+
+          <br /><br />
+
+          <div class="image-box">
+            <img src="img/wild_bo_workflow.png" alt="Workflow Diagram" />
+            <span>Figure 2: Workflow Overview</span>
+          </div>
+
+          <!-- SUITABILITY TABLE -->
+          <h3>Vineyard Suitability Modeling</h3>
+          <p>
+            The table below summarizes the criteria used to identify optimal
+            vineyard locations.
+          </p>
+
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th>Criteria</th>
+                <th>Suitability</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Factor">Slope</td>
+                <td data-label="Criteria">10–25%</td>
+                <td data-label="Suitability">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">Aspect</td>
+                <td data-label="Criteria">SE–SW</td>
+                <td data-label="Suitability">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">Elevation</td>
+                <td data-label="Criteria">≤ 260 m</td>
+                <td data-label="Suitability">
+                  <span class="level medium">Medium</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">Precipitation</td>
+                <td data-label="Criteria">400–1000 mm</td>
+                <td data-label="Suitability">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">Air Temperature</td>
+                <td data-label="Criteria">≥ 9°C</td>
+                <td data-label="Suitability">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">Soil Temperature</td>
+                <td data-label="Criteria">≥ 6°C</td>
+                <td data-label="Suitability">
+                  <span class="level medium">Medium</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">Soil pH</td>
+                <td data-label="Criteria">5.5–8.5</td>
+                <td data-label="Suitability">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Factor">NDVI (Fuzzy)</td>
+                <td data-label="Criteria">≥ 0.5</td>
+                <td data-label="Suitability">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- LEGEND -->
+          <div class="legend">
+            <strong>Suitability Levels:</strong>
+            <span class="level high">High</span> Optimal conditions
+            <span class="level medium">Medium</span> Acceptable
+            <span class="level low">Low</span> Less favorable
+          </div>
+
+          <!-- COST DISTANCE MODEL -->
+          <h3>Cost Distance Modeling (Wild Boar Movement)</h3>
+          <p>
+            The cost-distance model evaluates how easily wild boars can move
+            across the landscape toward vineyard areas.
+          </p>
+
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Description</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Component">Starting Points</td>
+                <td data-label="Description">
+                  Random points generated in forested areas
+                </td>
+                <td data-label="Impact">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Component">Cost Surface</td>
+                <td data-label="Description">Based on land cover + slope</td>
+                <td data-label="Impact">
+                  <span class="level medium">Medium</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Component">Distance Accumulation</td>
+                <td data-label="Description">
+                  Calculates cumulative movement difficulty
+                </td>
+                <td data-label="Impact">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Component">Least-Cost Paths</td>
+                <td data-label="Description">
+                  Optimal routes from forest to vineyards
+                </td>
+                <td data-label="Impact">
+                  <span class="level high">High</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Component">Path Lengths</td>
+                <td data-label="Description">
+                  779 m – 14,789 m (mean: 7,937 m)
+                </td>
+                <td data-label="Impact"><span class="level low">Low</span></td>
+              </tr>
+              <tr>
+                <td data-label="Component">Cost Values</td>
+                <td data-label="Description">1,466.7 – 19,835.8</td>
+                <td data-label="Impact">
+                  <span class="level medium">Medium</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- RESULTS -->
+          <h3>Results</h3>
+          <p>
+            The integration of vineyard suitability modeling and cost-distance
+            analysis reveals clear spatial patterns in both environmental
+            suitability and wild boar accessibility.
+          </p>
+
+          <h4>Key Findings</h4>
+          <ul>
+            <li>
+              Highest suitability is concentrated in the northern Ruwer
+              watershed.
+            </li>
+            <li>
+              Low-cost movement corridors occur near forest edges and gentle
+              slopes.
+            </li>
+            <li>
+              High-cost zones act as natural barriers to wild boar movement.
+            </li>
+            <li>
+              Least-cost paths range from 779 m to 14,789 m (mean: 7,937 m).
+            </li>
+            <li>
+              Vineyards in low-cost corridors are more vulnerable to wildlife
+              intrusion.
+            </li>
+          </ul>
+
+          <div class="image-box">
+
+            <img src="img/optimal path.jpg" alt="Results Map" />
+            <span>Figure: Combined Suitability and Cost-Distance Results</span>
+          </div>
+
+          <!-- CONCLUSION -->
+          <h3>Conclusion</h3>
+          <p>
+            This study demonstrates how environmental suitability and wildlife
+            movement interact to shape vineyard viability in the Ruwer
+            watershed. While climate, slope, and soil conditions remain the
+            primary drivers of vineyard suitability, wild boar accessibility
+            introduces an important ecological dimension.
+          </p>
+          <p>
+            The northern watershed offers the most favorable conditions and is
+            naturally protected by high-cost terrain. Vineyards near forest
+            edges or within low-cost corridors face increased wildlife pressure
+            and may benefit from protective measures such as fencing.
+          </p>
+
+          <!-- KEY INSIGHTS BOX -->
+          <div class="insights-box">
+            <h3>Key Insights</h3>
+
+            <div class="insight-item">
+              <p>
+                <strong>Optimal vineyard zones</strong> cluster in the northern
+                watershed.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>Wild boar movement</strong> follows low-cost corridors
+                near forests.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>High-cost terrain</strong> naturally protects certain
+                vineyards.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>Vulnerable vineyards</strong> lie near forest edges and
+                require protection.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>Integrated modeling</strong> provides a holistic
+                understanding of vineyard dynamics.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="side-block">
+            <h4>Technical Stack</h4>
+            <div class="tags">
+              <span>ArcGIS</span>
+              <span>QGIS</span>
+              <span>ModelBuilder</span>
+            </div>
+          </div>
+
+          <div class="side-block">
+            <h4>Deliverables</h4>
+            <a href="#" class="doc-link">📄 View Term Paper</a>
+            <a href="#" class="doc-link">💻 GitHub Repository</a>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+  </body>
+</html>

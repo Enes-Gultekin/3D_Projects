@@ -1,0 +1,290 @@
+<!-- botswana.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail | Botswana – NDVI–Rainfall DLM</title>
+    <script
+      src="https://kit.fontawesome.com/your-code.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="back-btn">← Back to Globe</a>
+    </nav>
+
+    <header class="project-hero">
+      <div class="container">
+        <span class="category-tag"
+          >Remote Sensing • Climate Interaction • Machine Learning</span
+        >
+        <h1>
+          Botswana: Rainfall–Biomass Interactions with DLM + Random Forest
+        </h1>
+        <p class="subtitle">
+          Distributed Lag Modeling (DLM) to detect delayed rainfall effects on
+          NDVI anomalies and regression/classification to explain sensitivity
+          with environmental variables.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>Study Area</h3>
+          <p>Botswana</p>
+        </div>
+        <div class="stat-card">
+          <h3>Tools</h3>
+          <p>R (DLM + Random Forest), Raster Processing Workflow</p>
+        </div>
+        <div class="stat-card">
+          <h3>Inputs</h3>
+          <p>
+            NDVI anomalies, Rainfall lags, DEM, Aridity, LST,
+            Evapotranspiration, Topographic Indices
+          </p>
+        </div>
+      </section>
+
+      <div class="content-layout">
+        <article class="main-text">
+          <!-- PROJECT OVERVIEW -->
+          <h2>Project Overview</h2>
+          <p>
+            This project examines how rainfall influences vegetation dynamics in
+            Botswana, including delayed (lagged) effects on NDVI anomalies. A
+            Distributed Lag Model (DLM) identifies where vegetation is sensitive
+            to rainfall and which time lags matter most. A random forest model
+            then explains spatial variability in sensitivity using terrain and
+            climate variables.
+          </p>
+
+          <!-- OBJECTIVES -->
+          <h3>Objectives</h3>
+          <ul>
+            <li>
+              Fit a Distributed Lag Model (DLM) to quantify rainfall influence
+              across lag months.
+            </li>
+            <li>
+              Identify “sensitive” regions using model significance/strength
+              indicators (e.g., F-values).
+            </li>
+            <li>
+              Test which environmental variables best explain NDVI–rainfall
+              sensitivity.
+            </li>
+            <li>
+              Classify significant lag relationships and evaluate model
+              performance.
+            </li>
+          </ul>
+
+          <div class="image-box">
+            <img
+              src="img/botswana_sensitive_areas.png"
+              alt="Sensitive Areas Map (DLM F-values)"
+            />
+            <span
+              >Figure 1: Sensitive NDVI–rainfall interaction areas .</span
+            >
+          </div>
+
+          <br /><br />
+
+          <!-- STEP 1 -->
+          <h3>Step 1: Distributed Lag Model (DLM)</h3>
+          <p>
+            The DLM was used to model how rainfall affects NDVI anomalies across
+            multiple lag months. Spatial outputs were analyzed to locate
+            sensitive regions and identify the most informative lags.
+          </p>
+
+          <h4>Key Observations</h4>
+          <ul>
+            <li>
+              <strong>Sensitive areas</strong> (higher model response) were
+              mainly located in the <strong>south-east of Botswana</strong>,
+              with additional isolated areas elsewhere.
+            </li>
+            <li>
+              <strong>Most obvious rainfall influence</strong> occurred at
+              <strong>lag 3 and lag 4</strong> (months).
+            </li>
+          </ul>
+
+
+
+          <br /><br />
+
+          <!-- STEP 2 -->
+          <h3>
+            Step 2: Explaining Sensitivity with Random Forest (Regression)
+          </h3>
+          <p>
+            The DLM outputs (F-values) were used as a target variable to explore
+            relationships with environmental drivers. Terrain variables were
+            derived from a DEM (e.g., slope, aspect, roughness, flow direction,
+            TRI, TPI) and combined with climate/topographic measures (e.g.,
+            aridity, LST, evapotranspiration, TWI, vertical distance to
+            channels).
+          </p>
+
+          <h4>Sampling & Data Cleaning</h4>
+          <ul>
+            <li>
+              Random sampling: <strong>25,000 training</strong> +
+              <strong>25,000 validation</strong> pixels (50,000 total).
+            </li>
+            <li>
+              Null values were removed to reduce bias and improve model
+              stability.
+            </li>
+          </ul>
+
+          <h4>Most Important Variables (Regression)</h4>
+          <p>
+            Variable importance indicated <strong>aridity</strong> as the
+            strongest driver of NDVI–rainfall sensitivity, followed by
+            <strong>elevation</strong>,
+            <strong>land surface temperature</strong>, and
+            <strong>evapotranspiration</strong>.
+            <strong>Flow direction</strong> showed the lowest influence.
+          </p>
+
+          <div class="image-box">
+            <img
+              src="img/botswana_rf_importance_regression.png"
+              alt="Random Forest Variable Importance (Regression)"
+            />
+            <span
+              >Figure 4: Random forest variable importance (regression)</span
+            >
+          </div>
+
+          <br /><br />
+
+          <!-- STEP 3 -->
+          <h3>Step 3: Classification of Significant Lag-3 Relationships</h3>
+          <p>
+            A random forest classifier was trained to predict whether lag-3
+            relationships were significant (5% threshold) based on the
+            environmental raster layers. The same key variables remained
+            dominant (aridity, elevation, evapotranspiration, land surface
+            temperature).
+          </p>
+
+          <h4>Classification Performance (Key Numbers)</h4>
+          <ul>
+            <li>
+              <strong>Non-significant pixels:</strong> ~96.73% correctly
+              predicted (very strong).
+            </li>
+            <li>
+              <strong>Significant pixels:</strong> ~34.05% correctly predicted
+              (weak; many false negatives).
+            </li>
+            <li>
+              The model tended to over/under-estimate class membership,
+              reflecting imbalance and confusion in detection.
+            </li>
+          </ul>
+
+          <div class="image-box">
+            <img
+              src="img/botswana_confusion_matrix.png"
+              alt="Confusion Matrix (Classification)"
+            />
+            <span
+              >Figure 5: Confusion matrix of the random forest classification
+              .</span
+            >
+          </div>
+
+          <!-- RESULTS -->
+          <h3>Results</h3>
+          <ul>
+            <li>
+              Strongest rainfall influence on NDVI appears after
+              <strong>3–4 months</strong>.
+            </li>
+            <li>
+              <strong>Aridity</strong> consistently explains spatial differences
+              in NDVI–rainfall sensitivity.
+            </li>
+            <li>
+              Regression explanations are strong, but classification struggles
+              to detect the minority “significant” class.
+            </li>
+          </ul>
+
+          <!-- CONCLUSION -->
+          <h3>Conclusion</h3>
+          <p>
+            The workflow links climate forcing to vegetation response using
+            lag-aware modeling, then explains sensitivity using environmental
+            context. Findings suggest that delayed rainfall effects are
+            strongest at lag 3–4, and that aridity and energy/water-balance
+            variables are key drivers. For classification tasks, improving
+            minority-class detection would likely require balancing strategies,
+            threshold tuning, or alternative metrics.
+          </p>
+
+          <!-- KEY INSIGHTS BOX -->
+          <div class="insights-box">
+            <h3>Key Insights</h3>
+
+            <div class="insight-item">
+              <p>
+                <strong>Lag effects matter:</strong> rainfall impacts peak after
+                ~3–4 months.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>Aridity dominates:</strong> strongest explanatory
+                variable across models.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>Terrain + climate context</strong> helps interpret
+                spatial sensitivity patterns.
+              </p>
+            </div>
+
+            <div class="insight-item">
+              <p>
+                <strong>Classification is harder than regression</strong> due to
+                class imbalance and false negatives.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="side-block">
+            <h4>Technical Stack</h4>
+            <div class="tags">
+              <span>R</span>
+              <span>Distributed Lag Model</span>
+              <span>Random Forest</span>
+              <span>Raster Analysis</span>
+            </div>
+          </div>
+
+
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

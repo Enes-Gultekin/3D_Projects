@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail | Enes Gültekin</title>
+    <script
+      src="https://kit.fontawesome.com/your-code.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="back-btn">← Back to Globe</a>
+    </nav>
+
+    <header class="project-hero">
+      <div class="container">
+        <span class="category-tag">Remote Sensing • Change Detection</span>
+        <h1>Forest Change Monitoring in Kenya</h1>
+        <p class="subtitle">
+          Landsat Time-Series Analysis (2001–2021) with FORCE & Random Forest
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>Overall Accuracy</h3>
+          <p>84%</p>
+        </div>
+        <div class="stat-card">
+          <h3>Tools</h3>
+          <p>FORCE, QGIS</p>
+        </div>
+        <div class="stat-card">
+          <h3>Data</h3>
+          <p>Landsat 4–5 / 7 / 8 / 9</p>
+        </div>
+      </section>
+
+      <div class="content-layout">
+        <article class="main-text">
+          <h2>Project Overview</h2>
+
+          <div class="image-box">
+            <img src="img/study_Area_kenya_fo.png" alt="Study Area Map" />
+            <span>Figure 1: Study Area</span>
+          </div>
+
+          <p>
+            This project addresses the need for long-term, consistent monitoring of forest dynamics in Kenya.
+            Using a 20-year Landsat time series (2001–2021), I processed satellite imagery into analysis-ready
+            data with FORCE and applied Random Forest classification to map land cover and quantify forest
+            gain, loss, and stability across protected areas and surrounding buffers.
+          </p>
+
+          <h3>Data & Preprocessing</h3>
+          <p>
+            Landsat scenes were processed in FORCE to create Analysis Ready Data (ARD) and Highly Analysis-Ready Data (hARD).
+            The workflow includes cloud/shadow masking (Fmask), atmospheric and topographic correction, and data cubing
+            to ensure that spectral signatures are comparable through time.
+          </p>
+
+          <div class="image-box">
+            <img src="img/images_by_sensors.png" alt="Number of Landsat Images by Year" />
+            <span>Figure 2: Number of Landsat images by year</span>
+          </div>
+
+          <p>
+            From the spectral bands (Blue, Green, Red, NIR, SWIR-1, SWIR-2), indices such as NDVI and EVI were derived
+            to separate forest from agriculture and degraded/bare forest patterns more robustly.
+          </p>
+
+          <h2>Methodology</h2>
+          <p>
+            Implemented a supervised Random Forest classifier using multi-temporal spectral-temporal metrics
+            (annual summaries of bands and indices). Using temporal information rather than single-date snapshots
+            improves class separability and reduces noise from seasonal variability.
+          </p>
+
+          <div class="image-box">
+            <img src="img/workflow.png" alt="Processing Workflow" />
+            <span>Figure 3: Processing system workflow</span>
+          </div>
+
+          <h2>Results</h2>
+          <p>
+            The Random Forest classification outputs were recoded into forest / non-forest and used to quantify
+            forest gain, loss, and stable forest across the study period. Validation using a confusion-matrix-based
+            assessment yielded an overall accuracy of 84%.
+          </p>
+
+          <p>
+            The results show a strong gain signal around 2015 (~33,924 ha), followed by a reversal with high forest loss
+            in 2020 (~15,118.92 ha). Possible drivers include land-use expansion, deforestation pressure, and degradation
+            reflected in the “bare forest” category.
+          </p>
+
+          <div class="image-box">
+            <img src="img/gain-loss.png" alt="Gain-Loss Graph" />
+            <span>Figure 4: Forest gain and loss over time</span>
+          </div>
+        </article>
+
+        <aside class="sidebar">
+          <div class="side-block">
+            <h4>Technical Stack</h4>
+            <div class="tags">
+              <span>FORCE</span>
+              <span>Landsat</span>
+              <span>Random Forest</span>
+              <span>Time-Series</span>
+              <span>Change Detection</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

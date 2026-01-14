@@ -1,0 +1,224 @@
+<!-- iberian.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail | Iberian Peninsula – Land-Cover Syndromes</title>
+    <script
+      src="https://kit.fontawesome.com/your-code.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="back-btn">← Back to Globe</a>
+    </nav>
+
+    <header class="project-hero">
+      <div class="container">
+        <span class="category-tag">Remote Sensing • Time-Series • Land-Cover Change</span>
+        <h1>Iberian Peninsula: NDVI Trends & Land-Use Syndromes</h1>
+        <p class="subtitle">
+          Seasonal trend detection with Fourier regression and Seasonal Mann–Kendall,
+          followed by a syndrome map to diagnose land-cover change processes.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>Study Area</h3>
+          <p>Iberian Peninsula</p>
+        </div>
+        <div class="stat-card">
+          <h3>Tools</h3>
+          <p>R, ArcGIS Pro</p>
+        </div>
+        <div class="stat-card">
+          <h3>Core Methods</h3>
+          <p>Fourier seasonality modeling, Seasonal Mann–Kendall, Zonal Statistics, Syndrome mapping</p>
+        </div>
+      </section>
+
+      <div class="content-layout">
+        <article class="main-text">
+          <!-- PROJECT OVERVIEW -->
+          <h2>Project Overview</h2>
+          <p>
+            This project analyzes land-cover change across the Iberian Peninsula using NDVI time series.
+            First, seasonal NDVI patterns are modeled and long-term trends are tested for significance.
+            Second, diagnostic combinations of NDVI parameters (trend, phase shift, magnitude) are used
+            to classify land-use syndromes that explain how and where land cover is changing.
+          </p>
+
+          <!-- GOALS -->
+          <h3>Objectives</h3>
+          <ul>
+            <li>Model NDVI seasonality and quantify temporal trends across pixels.</li>
+            <li>Identify significant change areas using 5% and 10% significance thresholds.</li>
+            <li>Compare change dynamics across land-cover classes (e.g., arable vs semi-natural).</li>
+            <li>Create a syndrome map to interpret dominant land-cover change processes.</li>
+          </ul>
+
+          <div class="image-box">
+            <img src="img/iberian_significance_maps.png" alt="Significant Trend Pixels (5% vs 10%)" />
+            <span>Figure 1: Significant pixels at 5% and 10% levels (green = significant).</span>
+          </div>
+
+          <br /><br />
+
+          <!-- METHOD A -->
+          <h3>Part A: Seasonal Trend Detection</h3>
+          <p>
+            Seasonal NDVI behavior was represented using Fourier polynomials (sine/cosine terms) within a
+            linear regression framework to capture annual seasonality. Trend significance was tested using the
+            Seasonal Mann–Kendall test:
+          </p>
+          <ul>
+            <li><strong>p-value</strong>: indicates whether a pixel changes significantly over time.</li>
+            <li><strong>Kendall’s Tau</strong>: indicates strength and direction of trend (−1 to +1).</li>
+          </ul>
+
+          <h4>Trend Significance Summary</h4>
+          <ul>
+            <li><strong>5% threshold:</strong> ~65.74% stable; ~34.26% changing.</li>
+            <li><strong>10% threshold:</strong> ~51.33% stable; ~48.67% changing.</li>
+          </ul>
+
+          <div class="image-box">
+            <img src="img/iberian_pie_stable_change.png" alt="Stable vs Change (5% and 10%)" />
+            <span>Figure 2: Stable vs changing pixels at 5% and 10% significance levels.</span>
+          </div>
+
+          <br /><br />
+
+          <!-- ZONAL STATS -->
+          <h3>Land-Cover Comparison (Zonal Statistics)</h3>
+          <p>
+            Zonal statistics were used to compare trend behavior between land-cover classes.
+            Semi-natural land contained more changed pixels than arable land and showed a higher average Tau,
+            indicating stronger positive vegetation trends.
+          </p>
+
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Pixel Count</th>
+                <th>Tau Mean</th>
+                <th>Tau Range</th>
+                <th>Interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Class">Arable Land</td>
+                <td data-label="Pixel Count">1634</td>
+                <td data-label="Tau Mean">0.2950</td>
+                <td data-label="Tau Range">−0.4839 to 0.7984</td>
+                <td data-label="Interpretation">Positive trend present, moderate strength</td>
+              </tr>
+              <tr>
+                <td data-label="Class">Semi-Natural Land</td>
+                <td data-label="Pixel Count">2086</td>
+                <td data-label="Tau Mean">0.3798</td>
+                <td data-label="Tau Range">−0.4299 to 0.8375</td>
+                <td data-label="Interpretation">Stronger positive trend; more change overall</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+          <br /><br />
+
+          <!-- METHOD B -->
+          <h3>Part B: Syndrome Map (Land-Use Change Diagnosis)</h3>
+          <p>
+            A syndrome map was created to interpret land-cover change processes using NDVI trend, phase shift,
+            and magnitude. The classification includes syndromes such as increasing/decreasing biomass and
+            productivity, irrigation changes, and crop change.
+          </p>
+
+          <div class="image-box">
+            <img src="img/syndrome_map.png" alt="Land Use Syndromes Map" />
+            <span>Figure 4: Land-use syndromes map for the Iberian Peninsula.</span>
+          </div>
+
+          <h4>Dominant Syndromes</h4>
+          <ul>
+            <li>
+              <strong>Increasing biomass (Semi-natural)</strong> — dominant pattern (~51.79%):
+              consistent with vegetation recovery (e.g., land abandonment, reforestation).
+            </li>
+            <li>
+              <strong>Increasing productivity (Arable)</strong> — second strongest (~23.97%):
+              consistent with agricultural intensification (fertilizers/irrigation).
+            </li>
+            <li>
+              Negative syndromes (decreasing biomass/productivity) appear only in small patches and are rare.
+            </li>
+          </ul>
+
+          <!-- RESULTS -->
+          <h3>Results</h3>
+          <ul>
+            <li>Most pixels remain stable, but the share of changing pixels increases substantially at 10% significance.</li>
+            <li>Semi-natural land shows the strongest positive trends and the greatest amount of change.</li>
+            <li>The syndrome map highlights vegetation recovery as the dominant change process across marginal areas.</li>
+            <li>Agricultural productivity increase is the second major process, reflecting intensification patterns.</li>
+          </ul>
+
+          <!-- CONCLUSION -->
+          <h3>Conclusion</h3>
+          <p>
+            This analysis combines seasonal trend statistics and diagnostic syndrome mapping to move from
+            “where change occurs” to “what kind of change is happening.” The Iberian Peninsula is dominated
+            by increasing biomass in semi-natural areas and increasing productivity in arable areas, while
+            negative change patterns remain localized and limited.
+          </p>
+
+          <!-- KEY INSIGHTS BOX -->
+          <div class="insights-box">
+            <h3>Key Insights</h3>
+
+            <div class="insight-item">
+              <p><strong>Seasonality-aware trend testing</strong> helps avoid false signals in NDVI time series.</p>
+            </div>
+
+            <div class="insight-item">
+              <p><strong>Semi-natural vegetation recovery</strong> is the dominant land-cover change process.</p>
+            </div>
+
+            <div class="insight-item">
+              <p><strong>Agricultural intensification</strong> appears as increasing productivity in arable land.</p>
+            </div>
+
+            <div class="insight-item">
+              <p><strong>Syndrome mapping</strong> turns statistics into interpretable land-use narratives.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="side-block">
+            <h4>Technical Stack</h4>
+            <div class="tags">
+              <span>R, </span>
+              <span>ArcGIS Pro, </span>
+              <span>Time-Series Analysis, </span>
+              <span>Mann–Kendall</span>
+            </div>
+          </div>
+
+
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

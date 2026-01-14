@@ -1,0 +1,253 @@
+<!-- london-fastfood.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail | London Fast-Food Spatial Analysis</title>
+    <script
+      src="https://kit.fontawesome.com/your-code.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="back-btn">← Back to Globe</a>
+    </nav>
+
+    <header class="project-hero">
+      <div class="container">
+        <span class="category-tag">Spatial Statistics • Point Patterns • Urban Analytics</span>
+        <h1>Spatial Analysis of Fast-Food Venues in London</h1>
+        <p class="subtitle">
+          Using Foursquare venue data to test clustering vs randomness (CSR / G-function)
+          and spatial autocorrelation (Moran’s I / LISA) across London wards.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- TOP STATS -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>Study Area</h3>
+          <p>Greater London (33 boroughs, 649 wards)</p>
+        </div>
+        <div class="stat-card">
+          <h3>Tools</h3>
+          <p>R (sp, sf, spatstat, spdep), Foursquare API, QGIS/ArcGIS (optional)</p>
+        </div>
+        <div class="stat-card">
+          <h3>Data</h3>
+          <p>Foursquare venues (Fast Food category) + London borough/ward shapefiles + ward population (2023)</p>
+        </div>
+      </section>
+
+      <div class="content-layout">
+        <article class="main-text">
+          <!-- PROJECT OVERVIEW -->
+          <h2>Project Overview</h2>
+          <p>
+            This project investigates how major fast-food chains are distributed across London.
+            Using Foursquare “Dining & Drinking” venue data, we extracted fast-food venues and focused
+            on three brands: <strong>McDonald’s</strong>, <strong>Burger King</strong>, and <strong>Five Guys</strong>.
+            The main goal was to determine whether venue locations are randomly distributed or clustered,
+            and whether clusters show spatial autocorrelation across wards.
+          </p>
+
+          <!-- OBJECTIVES -->
+          <h3>Objectives</h3>
+          <ul>
+            <li>Collect and clean fast-food venue locations using the Foursquare API.</li>
+            <li>Visualize spatial concentration using maps and heatmaps.</li>
+            <li>Test Complete Spatial Randomness (CSR) using quadrat tests and G-functions.</li>
+            <li>Evaluate ward-level spatial autocorrelation using Moran’s I and LISA.</li>
+            <li>Check whether venue counts relate to ward population size.</li>
+          </ul>
+
+          <div class="image-box">
+            <img src="img/london_heatmap_venues.png" alt="Heatmap of Fast-Food Venues in London" />
+            <span>Figure 1: Heatmap of fast-food venues by borough.</span>
+          </div>
+
+          <br /><br />
+
+          <!-- DATA SUMMARY -->
+          <h3>Dataset Summary</h3>
+          <p>
+            The initial Foursquare pull contained ~900 dining/drinking venues; after filtering to fast-food,
+            the dataset contained <strong>131 venues</strong> across London:
+          </p>
+
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>Chain</th>
+                <th>Count</th>
+                <th>Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Chain">McDonald’s</td>
+                <td data-label="Count">104</td>
+                <td data-label="Share">Dominant brand</td>
+              </tr>
+              <tr>
+                <td data-label="Chain">Burger King</td>
+                <td data-label="Count">18</td>
+                <td data-label="Share">Moderate presence</td>
+              </tr>
+              <tr>
+                <td data-label="Chain">Five Guys</td>
+                <td data-label="Count">9</td>
+                <td data-label="Share">Smallest presence</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="image-box">
+            <img src="img/london_venues_points.png" alt="Distribution of Fast-Food Chains in London" />
+            <span>Figure 2: Venue locations by chain.</span>
+          </div>
+
+          <br /><br />
+
+          <!-- METHODS -->
+          <h2>Methodology</h2>
+          <p>
+            Venue data were retrieved through the Foursquare API, cleaned for duplicates and missing values,
+            and converted into a SpatialPointsDataFrame in <strong>WGS84</strong> for mapping and spatial operations.
+            Borough and ward boundaries were imported from shapefiles.
+          </p>
+
+          <h3>Spatial Point Pattern Analysis (CSR + G-function)</h3>
+          <p>
+            We tested whether points follow <strong>Complete Spatial Randomness (CSR)</strong>.
+            CSR was evaluated using a quadrat chi-squared test and supported with the
+            <strong>G-function</strong> (nearest-neighbor distribution) to inspect clustering across distances.
+          </p>
+
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Metric</th>
+                <th>Result</th>
+                <th>Interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Test">CSR (Quadrat test)</td>
+                <td data-label="Metric">Chi-squared / p-value</td>
+                <td data-label="Result">χ² = 1045.7; p &lt; 2.2e−16</td>
+                <td data-label="Interpretation">Strong evidence of clustering (not random)</td>
+              </tr>
+              <tr>
+                <td data-label="Test">G-function</td>
+                <td data-label="Metric">Empirical vs envelope</td>
+                <td data-label="Result">Supports clustering overall</td>
+                <td data-label="Interpretation">Clustering becomes clearer at larger distances</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="image-box">
+            <img src="img/london_gfunction_all.png" alt="G-function for all venues" />
+            <span>Figure 3: G-function envelope for all venues.</span>
+          </div>
+
+
+
+          <br /><br />
+
+          <!-- POPULATION RELATION -->
+          <h3>Population vs Venue Counts</h3>
+          <p>
+            We examined whether wards with larger populations have more fast-food venues.
+            The relationship is weak: the correlation coefficient is <strong>r = 0.242</strong>, indicating
+            only a minor positive association and no strong evidence of dependency.
+          </p>
+
+
+          <br />
+
+          <h3>Spatial Autocorrelation (Moran’s I + LISA)</h3>
+          <p>
+            Ward-level venue counts were tested for spatial autocorrelation.
+            The global Moran’s I test was not significant (<strong>p = 0.4489</strong>), and Moran’s I was
+            extremely small (<strong>I = 0.0014</strong>), suggesting weak global spatial autocorrelation.
+          </p>
+
+          <p>
+            However, local cluster detection with <strong>LISA</strong> identified <strong>36 significant wards</strong>
+            (p &lt; 0.05): <strong>4 high–high clusters</strong> and <strong>32 low–low clusters</strong>.
+            This indicates that while global autocorrelation is weak, there are localized pockets of clustering.
+          </p>
+
+          <div class="image-box">
+            <img src="img/london_lisa_clusters.png" alt="LISA clusters in London" />
+            <span>Figure 6: LISA cluster map (High–High and Low–Low).</span>
+          </div>
+
+          <!-- RESULTS -->
+          <h2>Results</h2>
+          <ul>
+            <li>Fast-food venues show <strong>strong clustering</strong> (CSR test significant; G-function supports clustering).</li>
+            <li><strong>McDonald’s dominates</strong> the dataset (104/131 venues).</li>
+            <li>Population explains venue distribution poorly (<strong>r = 0.242</strong>).</li>
+            <li><strong>Global</strong> spatial autocorrelation is weak (Moran’s I not significant), but <strong>local</strong> clusters exist (36 wards significant in LISA).</li>
+          </ul>
+
+          <!-- CONCLUSION -->
+          <h2>Conclusion</h2>
+          <p>
+            The analysis shows that fast-food venues in London are not randomly distributed; they form clusters.
+            Yet these clusters do not translate into strong ward-level spatial autocorrelation globally.
+            Instead, clustering is concentrated in a limited set of local hotspots and coldspots.
+            Overall, the project demonstrates how combining point pattern statistics (CSR/G-function) with
+            spatial autocorrelation tools (Moran’s I/LISA) provides a nuanced understanding of urban venue distribution. :contentReference[oaicite:7]{index=7}
+          </p>
+
+          <!-- KEY INSIGHTS -->
+          <div class="insights-box">
+            <h3>Key Insights</h3>
+
+            <div class="insight-item">
+              <p><strong>CSR rejected:</strong> venues cluster strongly (χ² = 1045.7; p &lt; 2.2e−16).</p>
+            </div>
+
+            <div class="insight-item">
+              <p><strong>Local hotspots exist:</strong> 36 significant LISA wards (4 high–high, 32 low–low).</p>
+            </div>
+
+            <div class="insight-item">
+              <p><strong>Population is not enough:</strong> weak relationship with venue count (r = 0.242).</p>
+            </div>
+
+            <div class="insight-item">
+              <p><strong>Best takeaway:</strong> point clustering ≠ strong global autocorrelation across wards.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="side-block">
+            <h4>Technical Stack</h4>
+            <div class="tags">
+              <span>R</span>
+              <span>Foursquare API</span>
+              <span>Moran’s I</span>
+              <span>LISA</span>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
