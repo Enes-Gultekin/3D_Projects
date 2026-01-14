@@ -72,7 +72,7 @@ const myData = [
     description:
       "Analyzes of the spatial distribution of McDonald's, Burger King, and Five Guys using Foursquare data. It analyzes clustering and randomness through Complete Spatial Randomness (CSR), Moran's I, and LISA tests. The findings indicate significant clustering of fast-food venues, especially McDonald's, across London. There is a weak positive correlation between population size and venue numbers, and overall spatial autocorrelation among wards is minimal, despite some localized clusters",
     tags: ["Spatial Regression", "Spatial Autocorrelation", "R Programming"],
-    link: "",
+    link: "../projects/london.html",
     git: "",
   },
   {
