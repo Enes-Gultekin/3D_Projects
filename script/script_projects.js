@@ -210,8 +210,12 @@ fetch(
           document.getElementById("website").setAttribute("href", d.link);
 
           if (d.git === "") {
-            document.getElementById("git").setAttribute("href", d.git);
+
             document.getElementById("git").style.display = "none";
+          }
+          if (d.link === "") {
+
+            document.getElementById("link").style.display = "none";
           }
           world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.5 }, 1000);
           document.getElementById("close_button").style.display = "block";
